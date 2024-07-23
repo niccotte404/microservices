@@ -13,25 +13,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMqConfig {
-
-    @Value("${rabbitmq.host}")
-    private String host;
-
-    @Value("${rabbitmq.virtual-host}")
-    private String virtualHost;
-
-    @Value("${rabbitmq.username}")
-    private String username;
-
-    @Value("${rabbitmq.password}")
-    private String password;
     @Bean
     public ConnectionFactory connectionFactory() {
         CachingConnectionFactory connectionFactory = new CachingConnectionFactory();
-        connectionFactory.setHost(host);
-        connectionFactory.setVirtualHost(virtualHost);
-        connectionFactory.setUsername(username);
-        connectionFactory.setPassword(password);
+        connectionFactory.setAddresses("localhost:5672");
+        connectionFactory.setHost("5672");
+        connectionFactory.setVirtualHost("/");
+        connectionFactory.setUsername("guest");
+        connectionFactory.setPassword("guest");
         return connectionFactory;
     }
     @Bean
